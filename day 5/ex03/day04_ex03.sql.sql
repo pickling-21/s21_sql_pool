@@ -1,4 +1,9 @@
-SELECT dates AS missing_date FROM v_generated_dates vgd
-EXCEPT
-SELECT visit_date FROM person_visits
-ORDER BY 1;
+
+CREATE INDEX idx_person_order_multi ON person_order (person_id, menu_id, order_date);
+-- DROP INDEX idx_person_order_multi
+SET enable_seqscan =OFF;
+EXPLAIN ANALYSE
+SELECT person_id, menu_id, order_date
+FROM person_order
+WHERE person_id = 8 AND menu_id = 19;
+

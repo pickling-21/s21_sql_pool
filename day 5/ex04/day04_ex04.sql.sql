@@ -1,10 +1,8 @@
-CREATE VIEW v_symmetric_union
-AS
-(
-WITH r AS (SELECT person_id FROM person_visits WHERE visit_date = '02.01.2022'),
-     s AS (SELECT person_id FROM person_visits WHERE visit_date = '06.01.2022') (SELECT * FROM r EXCEPT SELECT * FROM s)
-UNION
-(SELECT * FROM s EXCEPT SELECT * FROM r)
-)
 
--- select * from v_symmetric_union
+CREATE UNIQUE INDEX idx_menu_unique  ON menu (pizzeria_id, pizza_name);
+-- DROP INDEX idx_menu_unique
+SET enable_seqscan =OFF;
+EXPLAIN ANALYSE
+SELECT pizzeria_id, pizza_name
+FROM menu
+WHERE pizza_name =  'greek pizza'
