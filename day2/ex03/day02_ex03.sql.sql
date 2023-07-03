@@ -1,5 +1,5 @@
   WITH gs AS (SELECT gs::date AS missing_date
-                FROM generate_series('01.01.2022'::date, '10.01.2022'::date, INTERVAL '1 day') AS gs)
+                FROM generate_series('2022-01-01','2022-01-10', INTERVAL '1 day') AS gs)
 SELECT missing_date::date
   FROM gs
            LEFT JOIN (SELECT visit_date, person_id FROM person_visits) AS pv
