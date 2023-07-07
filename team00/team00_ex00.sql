@@ -1,4 +1,3 @@
-DROP TABLE graph;
 
 
 CREATE TABLE graph
@@ -23,7 +22,6 @@ VALUES ('a', 'b', 10),
        ('c', 'd', 30),
        ('d', 'c', 30);
 
-SELECT * FROM graph;
 WITH RECURSIVE
     r AS (SELECT ARRAY [point1] AS passed_points, point2 AS end_point, 2 AS count, cost AS total_cost
             FROM graph
